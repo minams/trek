@@ -1,4 +1,4 @@
-const URL = 'https://trektravel.herokuapp.com/trips'
+const URL = 'https://trektravel.herokuapp.com/trips/';
 
 const reportStatus = (message) => {
     $('#status-message').html(message);
@@ -14,39 +14,37 @@ const loadTrips = () => {
       .then((response) => {
         reportStatus(`Successfully loaded ${response.data.length} trips`);
         response.data.forEach((trip) => {
-          tripList.append(`<li><a href="#" data-trip-id="${trip.id}"> ${trip.name}</a></li>`);
+          const eachTripList = $(`<li><a href=>${trip.name}</a></li>`);
+          tripList.append(eachTripList)
+          eachTripList.click(tripDetail(trip.id));
         });
       })
       .catch((error) => {
         reportStatus(`Loading error: ${error.message}`);
         console.log(error);
       });
-  };
+};
 
-  const tripsDetail = () => {
-    reportStatus('Loading a trip...');
-  
-    const tripList = $('#trip-list');
-    tripList.empty();
-    
+const tripDetail = (tripId) => {
+  console.log(tripId);
+  const eachDetail = $('#trip-detail');
+  eachDetail.empty();
+  const eachTrip = () => {
+    console.log("hello");
+    axios.get(URL + `${tripId}`)
+      .then((response) => {
+        reportStatus(`Successfully loaded Trip ID: ${response.data.id}`);
+        eachDetail.html(
+          `<h1>Trip Details</h1><h2>Name: ${response.data.name}</h2>Continent: ${response.data.continent}<h3>Category: ${response.data.category}</h3><h4>Weeks: ${response.data.weeks}</h4><h4>Cost: $${response.data.cost}</h4><h4>About:</h4><p>${response.data.about}</p>`
+      )})
+      .catch((error) => {
+        reportStatus(`Loading error: ${error.message}`);
+        console.log(error);
+      });
+    };
+  return eachTrip;
+};
 
-    // axios.get(URL + )
-    //   .then((response) => {
-    //     reportStatus(`Successfully loaded ${response.data.length} trips`);
-    //     response.data.forEach((trip) => {
-    //       tripList.append(`<li>${trip.name}</li>`);
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     reportStatus(`Loading error: ${error.message}`);
-    //     console.log(error);
-    //   });
-  };
-
-  // $('#current-trips').click( function() {
-  //   $(this).;
-  // });
-  
-  $(document).ready(() => {
-    $('#load').click(loadTrips);
+$(document).ready(() => {
+  $('#load').click(loadTrips);
 });
