@@ -14,7 +14,7 @@ const loadTrips = () => {
       .then((response) => {
         reportStatus(`Successfully loaded ${response.data.length} trips`);
         response.data.forEach((trip) => {
-          const eachTripList = $(`<li><a href=>${trip.name}</a></li>`);
+          const eachTripList = $(`<li>${trip.name}</li>`);
           tripList.append(eachTripList)
           eachTripList.click(tripDetail(trip.id));
         });
@@ -26,11 +26,11 @@ const loadTrips = () => {
 };
 
 const tripDetail = (tripId) => {
-  console.log(tripId);
-  const eachDetail = $('#trip-detail');
-  eachDetail.empty();
   const eachTrip = () => {
-    console.log("hello");
+
+    const eachDetail = $('#trip-detail');
+    eachDetail.empty();
+
     axios.get(URL + `${tripId}`)
       .then((response) => {
         reportStatus(`Successfully loaded Trip ID: ${response.data.id}`);
