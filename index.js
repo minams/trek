@@ -36,7 +36,7 @@ const tripDetail = (tripId) => {
       .then((response) => {
         reportStatus(`Successfully loaded Trip ID: ${response.data.id}`);
         eachDetail.html(
-          `<h1>Trip Details</h1><h2>Name: ${response.data.name}</h2>Continent: ${response.data.continent}<h3>Category: ${response.data.category}</h3><h4>Weeks: ${response.data.weeks}</h4><h4>Cost: $${response.data.cost}</h4><h4>About:</h4><p>${response.data.about}</p>`
+          `<h1>Trip Details -</h1><h2>Name: ${response.data.name}</h2><h3>Continent: ${response.data.continent}</h3><h3>Category: ${response.data.category}</h3><h3>Weeks: ${response.data.weeks}</h3><h3>Cost: $${response.data.cost}</h3><h3>About:</h3><p>${response.data.about}</p>`
       )})
       .catch((error) => {
         reportStatus(`Loading error: ${error.message}`);
