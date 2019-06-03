@@ -1,7 +1,33 @@
 body {
-    font-family: sans-serif;
-  }
+  font-family: sans-serif;
+  background-image: url('https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/62009177_10155977292622443_4838250100251688960_o.jpg?_nc_cat=109&_nc_oc=AQkZabq36CMKPZR7Q-vMIrEoNJYXCTPATVdvpjFIB4cohEj6HwxX0PbfWWWZfh6Z1aOH5-TN9DELPKd6naXUKSGr&_nc_ht=scontent-sea1-1.xx&oh=f343c463da52e17f78c65d5b6286338c&oe=5D88EFAD');
+  background-repeat: no-repeat;
+  background-size: cover;
+  //background image courtesy of: https://www.vectorstock.com/royalty-free-vector/art-scenery-cartoon-style-game-background-vector-14922893;
+}
 
-main {
-    
+header {
+  font-size: 2em;
+  color: rgb(247, 242, 92);
+}
+
+ul {
+  list-style: none;
+}
+
+.each-trip-detail {
+  align-content: flex-end;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#status-message {
+  color:  rgb(7, 247, 67);
+}
+
+#load {
+  border-radius: 25px;
 }

@@ -6,16 +6,17 @@ const reportStatus = (message) => {
 
 const loadTrips = () => {
     reportStatus('Loading trips...');
-  
     const tripList = $('#trip-list');
     tripList.empty();
-
+    
+  
     axios.get(URL)
       .then((response) => {
         reportStatus(`Successfully loaded ${response.data.length} trips`);
+        tripList.html(`<h2>All Trips</h2>`);
         response.data.forEach((trip) => {
           const eachTripList = $(`<li>${trip.name}</li>`);
-          tripList.append(eachTripList)
+          tripList.append(eachTripList);
           eachTripList.click(tripDetail(trip.id));
         });
       })
@@ -27,7 +28,7 @@ const loadTrips = () => {
 
 const tripDetail = (tripId) => {
   const eachTrip = () => {
-
+    
     const eachDetail = $('#trip-detail');
     eachDetail.empty();
 
